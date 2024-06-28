@@ -3,6 +3,7 @@
 #include <string>
 #include <iomanip>
 #pragma warning (disable:4996)
+#include "NumberWrapper.h"
 
 NumberWrapper::NumberWrapper(int n, const ConsolePrinter& cp) : n(n), consolePrinter(cp) 
 {}
