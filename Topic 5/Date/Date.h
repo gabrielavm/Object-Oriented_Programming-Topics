@@ -39,4 +39,4 @@ public:
 
 };
 
-int compareBulgarianDates(const Date& lhs, const Date& rhs);
+int compareDates(const Date& lhs, const Date& rhs);
