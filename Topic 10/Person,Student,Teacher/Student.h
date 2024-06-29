@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "Person.h"
+#include "../Person/Person.h"
 
 class Student : public Person
 {
