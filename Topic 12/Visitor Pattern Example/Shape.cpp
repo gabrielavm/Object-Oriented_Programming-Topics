@@ -69,3 +69,14 @@ Shape::~Shape()
 {
 	free();
 }
+
+void Shape::setPoint(size_t pointIndex, int x, int y)
+{
+	if (pointIndex >= pointsCount)
+	{
+		throw std::exception("Invalid point index!");
+	}
+
+	points[pointIndex].x = x;
+	points[pointIndex].y = y;
+}
