@@ -49,7 +49,7 @@ public:
 
 	void setPoint(size_t pointIndex, int x, int y);
 
-	virtual void intersectWith() const = 0;
+	virtual void intersectWith(const Shape& other) const = 0;
 
 	virtual void intersectWithCircle(const Circle& other) const = 0;
 	virtual void intersectWithTriangle(const Triangle& other) const = 0;
