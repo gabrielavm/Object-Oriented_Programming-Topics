@@ -112,7 +112,7 @@ double Shape::getPerimeter() const
 	assert(pointsCount >= 3);
 
 	double perimeter = 0;
-	for (int i = 0; i < pointsCount; i++)
+	for (int i = 0; i < pointsCount - 1; i++)
 	{
 		perimeter += points[i].getDist(points[i + 1]);
 	}
