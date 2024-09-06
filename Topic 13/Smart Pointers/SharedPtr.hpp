@@ -38,6 +38,9 @@ struct Counter
 	}
 };
 
+template <typename V>
+class WeakPtr;
+
 template <typename T>
 class SharedPtr
 {
@@ -51,6 +54,7 @@ class SharedPtr
 	void copyFrom(const SharedPtr<T>& other);
 	void moveFrom(SharedPtr<T>&& other);
 
+	SharedPtr(WeakPtr<T>& ptr);
 public:
 	SharedPtr();
 	SharedPtr(T* data);
@@ -64,8 +68,8 @@ public:
 	T& operator*();
 	const T& operator*() const;
 
-	T& operator->();
-	const T& operator->() const;
+	T* operator->();
+	const T* operator->() const;
 
 	bool isInitlized() const;
 
@@ -141,6 +145,18 @@ void SharedPtr<T>::moveFrom(SharedPtr<T>&& other)
 }
 
 template <typename T>
+SharedPtr<T>::SharedPtr(WeakPtr<t>& ptr)
+{
+	data = ptr.data;
+	counter = ptr.counter;
+
+	if(counter)
+	{
+		counter->addSharedPtr();
+	}
+}
+
+template <typename T>
 SharedPtr<T>::SharedPtr(SharedPtr<T>&& other) noexcept
 {
 	moveFrom(std::move(other));
@@ -199,15 +215,15 @@ SharedPtr<T>::~SharedPtr()
 }
 
 template<typename T>
-T& SharedPtr<T>::operator->() 
+T* SharedPtr<T>::operator->() 
 {
-	return *data;
+	return data;
 }
 
 template<typename T>
-const T& SharedPtr<T>::operator->() const 
+const T* SharedPtr<T>::operator->() const 
 {
-	return *data;
+	return data;
 }
 
 template<typename T>
