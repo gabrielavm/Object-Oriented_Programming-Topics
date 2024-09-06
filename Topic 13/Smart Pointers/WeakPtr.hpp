@@ -5,6 +5,9 @@
 template <typename T>
 class WeakPtr
 {
+	template <typename V>
+	friend class SharedPtr;
+
 	T* data;
 	Counter* counter;
 
@@ -98,6 +101,7 @@ void WeakPtr<T>::free()
 	}
 
 	counter->removeWeakPtr();
+	
 	if (counter->weakCount == 0) //also use count is 0
 	{
 		delete counter;
@@ -143,6 +147,6 @@ SharedPtr<T> WeakPtr<T>::lock() const
 	}
 	else
 	{
-		return SharedPtr<T>(data);
+		return SharedPtr<T>(*this);
 	}
 }
