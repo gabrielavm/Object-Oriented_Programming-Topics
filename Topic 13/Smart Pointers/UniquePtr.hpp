@@ -68,13 +68,13 @@ const T& UniquePtr<T>::operator*() const
 }
 
 template<typename T>
-T& UniquePtr<T>::operator->()
+T* UniquePtr<T>::operator->()
 {
-	return *data;
+	return data;
 }
 
 template<typename T>
-const T& UniquePtr<T>::operator->() const
+const T* UniquePtr<T>::operator->() const
 {
-	return *data;
+	return data;
 }
