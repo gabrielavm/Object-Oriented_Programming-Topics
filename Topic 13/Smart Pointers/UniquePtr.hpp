@@ -21,8 +21,8 @@ public:
 	T& operator*();
 	const T& operator*() const;
 
-	T& operator->();
-	const T& operator->() const;
+	T* operator->();
+	const T* operator->() const;
 };
 
 template<typename T>
